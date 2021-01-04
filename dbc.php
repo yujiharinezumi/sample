@@ -1,6 +1,6 @@
 <?php
 
-//巻数一つに一つの機能のみ持たせる
+//関数一つに一つの機能のみ持たせる
 //1,データベースに接続する　引数：なし　返り値：接続結果
 //2.データを取得する 引数：なし　返り値：取得したデータ
 //3.カテゴリー名を表示 引数：数字　戻り値：カテゴリーの文字列
@@ -74,6 +74,7 @@ function setCategoryByName($category){
             <td><?php echo $column['id'] ?></td>
             <td><?php echo $column['title'] ?></td>
             <td><?php echo setCategoryByName($column['category']) ?></td>
+            <td><a href="/blog_app/detail.php?id=<?php echo $column['id'] ?>">詳細</td>
         </tr>
         <?php endforeach; ?>
     </table>
