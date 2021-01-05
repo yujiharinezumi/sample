@@ -43,9 +43,9 @@ function  getAllBlog(){
 
 function setCategoryByName($category){
     if($category === '1'){
-        return 'ブログ';
-    }elseif($category === '2'){
         return '日常';
+    }elseif($category === '2'){
+        return 'プログラミング';
     }else{
         return 'その他';
     }

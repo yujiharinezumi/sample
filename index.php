@@ -1,5 +1,16 @@
 <?php
 
+
+
+
+//フォームから値を渡す
+//フォームから値を受け取る
+//バリデーションする
+//トランザクションを追加する
+//データにDBを登録する
+
+
+
 require_once('dbc.php');
 
 // use Blog\Dbc;
@@ -20,6 +31,7 @@ $blogData = getAllBlog();
 </head>
 <body>
 <h2>ブログ一覧</h2>
+<p><a href="/blog_app/form.php">新規作成</a></p>
     <table>
         <tr>
             <th>No.</th>
