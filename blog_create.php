@@ -29,7 +29,7 @@ $sql = 'INSERT INTO
             (:title,:content,:category,:publish_status)';
 
 $dbh = dbConnect();
-$dbh->beginTrasaction();
+$dbh->beginTransaction();
 
 
 try {
