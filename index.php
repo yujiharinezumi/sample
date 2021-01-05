@@ -13,9 +13,14 @@
 
 require_once('dbc.php');
 
+
+
+$dbc = new Dbc();
+// var_dump($dbc);
+
 // use Blog\Dbc;
 //取得したデータの表示
-$blogData = getAllBlog();
+$blogData = $dbc->getAllBlog();
 
 
 ?> 
@@ -42,7 +47,7 @@ $blogData = getAllBlog();
         <tr>
             <td><?php echo $column['id'] ?></td>
             <td><?php echo $column['title'] ?></td>
-            <td><?php echo setCategoryByName($column['category']) ?></td>
+            <td><?php echo $dbc->setCategoryByName($column['category']) ?></td>
             <td><a href="/blog_app/detail.php?id=<?php echo $column['id'] ?>">詳細</td>
         </tr>
         <?php endforeach; ?>
