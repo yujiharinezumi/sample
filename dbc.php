@@ -1,5 +1,7 @@
 <?php
 
+// namespace Blog\Dbc;
+
 //関数一つに一つの機能のみ持たせる
 //1,データベースに接続する　引数：なし　返り値：接続結果
 //2.データを取得する 引数：なし　返り値：取得したデータ
@@ -39,9 +41,6 @@ function  getAllBlog(){
         $dbh = null;
 }
 
-//取得したデータの表示
-$blogData = getAllBlog();
-
 function setCategoryByName($category){
     if($category === '1'){
         return 'ブログ';
@@ -51,32 +50,30 @@ function setCategoryByName($category){
         return 'その他';
     }
 }
+    //引数は🆔　返り値はresult
+
+    function getBlog($id){
+        if(empty($id)){
+            exit('IDが不正です');
+        }
+        
+        $dbh = dbConnect();
+        //SQL準備
+        $stmt = $dbh->prepare('SELECT * from blog Where id = :id');
+        $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
+        //SQL実行
+        $stmt->execute();
+        //結果を取得
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // var_dump($result);
+        
+        if(!$result){
+            exit('ブログがありません。');
+        }
+        return  $result;
+    }
+
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ブログ一覧</title>
-</head>
-<body>
-<h2>ブログ一覧</h2>
-    <table>
-        <tr>
-            <th>No.</th>
-            <th>タイトル</th>
-            <th>カテゴリー</th>
-        </tr>
-        <?php foreach($blogData as $column): ?>
-        <tr>
-            <td><?php echo $column['id'] ?></td>
-            <td><?php echo $column['title'] ?></td>
-            <td><?php echo setCategoryByName($column['category']) ?></td>
-            <td><a href="/blog_app/detail.php?id=<?php echo $column['id'] ?>">詳細</td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-</body>
-</html>
