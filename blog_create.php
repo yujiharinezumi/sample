@@ -12,3 +12,5 @@ $blog->blogCreate($blogs);
 
 
 ?>
+
+<p><a href="/blog_app/index.php">戻る</a></p>

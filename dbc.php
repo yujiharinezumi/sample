@@ -7,15 +7,18 @@
 //2.データを取得する 引数：なし　返り値：取得したデータ
 //3.カテゴリー名を表示 引数：数字　戻り値：カテゴリーの文字列
 
-
+require_once('.env.php');
 Class Dbc {
 
     protected $table_name;
 
     protected function dbConnect() {
-        $dsn = 'mysql:host=localhost;dbname=blog_app;charset=utf8';
-        $user = 'blog_user2';
-        $pass = 'yuji3385'; 
+        $host   = DB_HOST;
+        $dbname = DB_NAME;
+        $user   = DB_USER;
+        $pass   = DB_PASS;
+        $dsn    = "mysql:host=$host;dbname=$dbname;charset=utf8";
+        
         try{
             $dbh = new PDO($dsn,$user,$pass,[
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
@@ -64,6 +67,22 @@ Class Dbc {
         if(!$result){
             exit('ブログがありません。');
         }
+        return  $result;
+    }
+
+    public function delete($id){
+        if(empty($id)){
+            exit('IDが不正です');
+        }
+        
+        $dbh = $this->dbConnect();
+        //SQL準備
+        $stmt = $dbh->prepare("DELETE from $this->table_name Where id = :id");
+        $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
+        //SQL実行
+        $stmt->execute();
+        //結果を取得
+        echo 'ブログを削除しました';
         return  $result;
     }
 

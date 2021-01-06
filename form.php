@@ -25,6 +25,7 @@
         <br>
         <input type="submit" value="送信">
     </form>
+    <p><a href="/blog_app/index.php">戻る</a></p>
     
 </body>
 </html>
