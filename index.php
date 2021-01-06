@@ -49,6 +49,7 @@ $blogData = $blog->getAll();
             <td><?php echo $column['title'] ?></td>
             <td><?php echo $blog->setCategoryByName($column['category']) ?></td>
             <td><a href="/blog_app/detail.php?id=<?php echo $column['id'] ?>">詳細</td>
+            <td><a href="/blog_app/update_form.php?id=<?php echo $column['id'] ?>">編集</td>
         </tr>
         <?php endforeach; ?>
     </table>
