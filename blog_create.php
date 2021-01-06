@@ -1,6 +1,8 @@
 <?php
 
-require_once('dbc.php');
+require_once('blog.php');
+
+ini_set('display_errors', "On");
 
 $blogs = $_POST;
 
@@ -23,8 +25,8 @@ if(empty($blogs['publish_status'])){
     exit('公開ステータスは必須です');
 }
 
-$dbc = new Dbc();
+$blog = new Blog();
 
-$dbc->blogCreate($blogs);
+$blog->blogCreate($blogs);
 
 ?>

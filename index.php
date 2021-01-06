@@ -11,16 +11,16 @@
 
 
 
-require_once('dbc.php');
+require_once('blog.php');
 
+ini_set('display_errors', "On");
 
-
-$dbc = new Dbc();
+$blog = new Blog();
 // var_dump($dbc);
 
 // use Blog\Dbc;
 //取得したデータの表示
-$blogData = $dbc->getAllBlog();
+$blogData = $blog->getAll();
 
 
 ?> 
@@ -47,7 +47,7 @@ $blogData = $dbc->getAllBlog();
         <tr>
             <td><?php echo $column['id'] ?></td>
             <td><?php echo $column['title'] ?></td>
-            <td><?php echo $dbc->setCategoryByName($column['category']) ?></td>
+            <td><?php echo $blog->setCategoryByName($column['category']) ?></td>
             <td><a href="/blog_app/detail.php?id=<?php echo $column['id'] ?>">詳細</td>
         </tr>
         <?php endforeach; ?>

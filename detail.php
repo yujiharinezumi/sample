@@ -1,16 +1,16 @@
 <?php   
 
 //require onceを使う
-require_once('dbc.php');
+require_once('blog.php');
 //name spaceを使う
 //useを使う
 
-$dbc = new Dbc();
+$blog = new Blog();
 
 
 $id = $_GET['id'];
 
-$result = $dbc->getBlog($_GET['id']);
+$result = $blog->getById($_GET['id']);
 
 ?>
 
@@ -26,7 +26,7 @@ $result = $dbc->getBlog($_GET['id']);
     <h2>ブログ詳細</h2>
     <h3>タイトル:<?php echo $result['title'] ?></h3>
     <p>投稿日時:<?php echo $result['post_at'] ?></p>
-    <p>カテゴリ:<?php echo $dbc->setCategoryByName($result['category']) ?></p>
+    <p>カテゴリ:<?php echo $blog->setCategoryByName($result['category']) ?></p>
     <hr>
     <p>本文:<?php echo $result['content'] ?></p>
     
